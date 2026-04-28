@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>How to Share HTML Files for Free via GitHub Pages</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f5f5f3;
+    color: #1a1a1a;
+    padding: 48px 20px 80px;
+    line-height: 1.6;
+  }
+
+  .page {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .header {
+    margin-bottom: 48px;
+  }
+  .label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 10px;
+  }
+  h1 {
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    color: #111;
+    margin-bottom: 14px;
+  }
+  .intro {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.65;
+    border-left: 3px solid #e0e0e0;
+    padding-left: 16px;
+  }
+
+  /* Steps */
+  .step {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 0 20px;
+    margin-bottom: 40px;
+    position: relative;
+  }
+  .step:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 23px;
+    top: 48px;
+    bottom: -10px;
+    width: 1px;
+    background: #e0e0e0;
+  }
+
+  .step-num {
+    width: 48px;
+    height: 48px;
+    background: #111;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step-body h2 {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+    padding-top: 10px;
+  }
+  .step-body p {
+    font-size: 15px;
+    color: #444;
+    margin-bottom: 10px;
+  }
+  .step-body p:last-child { margin-bottom: 0; }
+
+  /* Substeps */
+  .substeps {
+    list-style: none;
+    margin: 12px 0 4px;
+    padding: 0;
+  }
+  .substeps li {
+    font-size: 15px;
+    color: #333;
+    padding: 7px 0 7px 24px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+  }
+  .substeps li:last-child { border-bottom: none; }
+  .substeps li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #aaa;
+    font-size: 13px;
+  }
+
+  /* Code / URL */
+  .code-block {
+    background: #111;
+    color: #e8e8e8;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    padding: 16px 20px;
+    border-radius: 6px;
+    margin: 12px 0;
+    word-break: break-all;
+    line-height: 1.6;
+  }
+  .code-block .highlight { color: #79c0ff; }
+  .code-block .muted { color: #888; }
+
+  /* Note / tip box */
+  .note {
+    background: #fffbeb;
+    border: 1px solid #f0d060;
+    border-radius: 6px;
+    padding: 14px 16px;
+    font-size: 14px;
+    color: #555;
+    margin: 12px 0;
+  }
+  .note strong { color: #333; }
+
+  .tip {
+    background: #f0faf4;
+    border: 1px solid #a8d5b5;
+    border-radius: 6px;
+    padding: 14px 16px;
+    font-size: 14px;
+    color: #444;
+    margin: 12px 0;
+  }
+  .tip strong { color: #2a6b44; }
+
+  /* Divider */
+  .divider {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    margin: 48px 0;
+  }
+
+  /* Footer summary */
+  .summary {
+    background: #111;
+    color: #e8e8e8;
+    border-radius: 8px;
+    padding: 28px 32px;
+  }
+  .summary h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #fff;
+  }
+  .summary .url-pattern {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: #79c0ff;
+    background: rgba(255,255,255,0.06);
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    word-break: break-all;
+  }
+  .summary p {
+    font-size: 14px;
+    color: #aaa;
+    line-height: 1.6;
+  }
+  .summary p + p { margin-top: 8px; }
+
+  @media (max-width: 500px) {
+    h1 { font-size: 26px; }
+    .step { grid-template-columns: 40px 1fr; gap: 0 14px; }
+    .step-num { width: 40px; height: 40px; font-size: 14px; }
+    .step:not(:last-child)::before { left: 19px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="label">Free Hosting Guide</div>
+    <h1>How to share HTML files as live URLs — for free, forever</h1>
+    <p class="intro">
+      This guide walks you through hosting HTML files on GitHub Pages so anyone can view them
+      in a browser — no downloads, no account required to view, no expiry, no cost.
+      Takes about 5 minutes from scratch.
+    </p>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <h2>Create a free GitHub account</h2>
+      <p>Go to <strong>github.com</strong> and sign up. Choose a username — it will appear in every URL you share, so pick something clean (e.g. your name).</p>
+      <div class="note"><strong>Note:</strong> The free GitHub plan is all you need. Don't upgrade anything.</div>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <h2>Create a new repository</h2>
+      <p>A repository is just a folder that lives on GitHub. Think of this one as your permanent home for all shareable HTML files.</p>
+      <ul class="substeps">
+        <li>Click the <strong>+</strong> icon in the top right → <strong>New repository</strong></li>
+        <li>Name it something like <strong>shared-pages</strong></li>
+        <li>Set visibility to <strong>Public</strong></li>
+        <li>Turn on <strong>Add a README file</strong> — this is required</li>
+        <li>Leave everything else as default</li>
+        <li>Click <strong>Create repository</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <h2>Upload your HTML file</h2>
+      <ul class="substeps">
+        <li>From your new repo, click <strong>Add file → Upload files</strong></li>
+        <li>Drag your HTML file in, or click to browse and select it</li>
+        <li>Scroll down and click <strong>Commit changes</strong></li>
+      </ul>
+      <div class="note">
+        <strong>Important:</strong> The filename becomes part of the URL, so name your file something clean before uploading — no spaces, use hyphens instead. Example: <code>team-profile.html</code>, not <code>My Team Profile (final).html</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <h2>Turn on GitHub Pages</h2>
+      <p>This is the step that converts your repo into a live website.</p>
+      <ul class="substeps">
+        <li>Go to your repo and click <strong>Settings</strong> (top tab bar)</li>
+        <li>In the left sidebar, click <strong>Pages</strong></li>
+        <li>Under <strong>Branch</strong>, change the dropdown from "None" to <strong>main</strong></li>
+        <li>Leave the folder set to <strong>/ (root)</strong></li>
+        <li>Click <strong>Save</strong></li>
+      </ul>
+      <div class="tip"><strong>Wait about 60 seconds</strong>, then refresh the page. A banner will appear saying "Your site is live at https://yourusername.github.io/shared-pages/" — that confirms it worked.</div>
+    </div>
+  </div>
+
+  <!-- STEP 5 -->
+  <div class="step">
+    <div class="step-num">5</div>
+    <div class="step-body">
+      <h2>Build your shareable URL</h2>
+      <p>Your URL is always the same base pattern with the filename added to the end:</p>
+      <div class="code-block">
+        <span class="muted">https://</span><span class="highlight">your-username</span><span class="muted">.github.io/shared-pages/</span><span class="highlight">your-filename.html</span>
+      </div>
+      <p>For example, if your username is <strong>roberto-calamari</strong> and your file is <strong>allan-astrology-profile.html</strong>:</p>
+      <div class="code-block">https://roberto-calamari.github.io/shared-pages/allan-astrology-profile.html</div>
+      <p>Paste that into any browser — it loads as a fully rendered web page with no login or download required.</p>
+    </div>
+  </div>
+
+  <!-- STEP 6 -->
+  <div class="step">
+    <div class="step-num">6</div>
+    <div class="step-body">
+      <h2>Adding more files in the future</h2>
+      <p>Every new HTML file you share follows the same pattern — no new repos, no new settings.</p>
+      <ul class="substeps">
+        <li>Go to your <strong>shared-pages</strong> repo on github.com</li>
+        <li>Click <strong>Add file → Upload files</strong></li>
+        <li>Upload your new HTML file and commit</li>
+        <li>Your new URL is live within ~60 seconds</li>
+      </ul>
+      <div class="tip">
+        <strong>To update an existing file:</strong> GitHub's upload UI only adds new files — it won't overwrite an existing one. To edit a file that's already there, click on it in the repo, then click the <strong>pencil (edit) icon</strong> to make changes directly in the browser.
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <div class="summary">
+    <h3>The quick reference</h3>
+    <div class="url-pattern">https://YOUR-USERNAME.github.io/shared-pages/YOUR-FILENAME.html</div>
+    <p>✓ Free forever on GitHub's free plan</p>
+    <p>✓ Anyone can view — no GitHub account needed</p>
+    <p>✓ Renders fully in the browser, no download prompt</p>
+    <p>✓ URLs never expire</p>
+    <p>✓ Add as many HTML files as you want to the same repo</p>
+  </div>
+
+</div>
+</body>
+</html>
